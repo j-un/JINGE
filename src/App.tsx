@@ -59,6 +59,18 @@ const App: React.FC = () => {
         borderTop: "1px solid #eee",
         paddingTop: "20px"
       }}>
+        <small>
+          関連リンク: {}
+          <a
+            href="https://github.com/j-un/JINGE"
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub
+          </a>
+        </small>
+        <br />
+        <br />
         <small>© {new Date().getFullYear()} JINGE. All rights reserved.</small>
       </footer>
     </div>
