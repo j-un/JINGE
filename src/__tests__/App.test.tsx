@@ -8,7 +8,7 @@ describe('App', () => {
 
     expect(screen.getByText('JINGE - β Ver.')).toBeInTheDocument()
     expect(
-      screen.getByText('タカラトミー社「人生ゲーム」の紙幣管理をデジタル化し、所持金集計、片付けを簡単に')
+      screen.getByText('タカラトミー「人生ゲーム」の紙幣管理をデジタル化')
     ).toBeInTheDocument()
     expect(
       screen.getByText('ブラウザのみで動作するため、サーバーサイドにユーザーデータは一切保存しません')
