@@ -7,11 +7,25 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+@media (prefers-color-scheme: dark) {
+    .playerBoard {
+        background-color: #1a1a1a;
+        border-color: #333;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+}
+
 .playerName {
     margin: 0 0 15px 0;
     color: #333;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+    .playerName {
+        color: #e0e0e0;
+    }
 }
 
 .nameInput {
@@ -23,11 +37,25 @@
     width: 80%;
 }
 
+@media (prefers-color-scheme: dark) {
+    .nameInput {
+        background-color: #2d2d2d;
+        border-color: #404040;
+        color: #e0e0e0;
+    }
+}
+
 .totalAmount {
     font-size: 1.2rem;
     font-weight: bold;
     color: #2c5282;
     margin-bottom: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .totalAmount {
+        color: #63b3ed;
+    }
 }
 
 .currencyItem {
@@ -55,6 +83,12 @@
     min-width: 40px;
 }
 
+@media (prefers-color-scheme: dark) {
+    .currencyCount {
+        color: #e0e0e0;
+    }
+}
+
 .buttonContainer {
     display: flex;
     gap: 8px;
@@ -68,4 +102,16 @@
     background-color: #fff;
     cursor: pointer;
     transition: all 0.2s;
+}
+
+@media (prefers-color-scheme: dark) {
+    .currencyButton {
+        background-color: #2d2d2d;
+        border-color: #404040;
+        color: #e0e0e0;
+    }
+
+    .currencyButton:hover {
+        background-color: #404040;
+    }
 }
