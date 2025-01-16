@@ -22,7 +22,7 @@ const App: React.FC = () => {
     <div className={styles.container}>
       <h1 className={styles.title}>JINGE - β Ver.</h1>
       <ul className={styles.description}>
-        <li>タカラトミー社「人生ゲーム」の紙幣管理をデジタル化し、所持金集計、片付けを簡単に</li>
+        <li>タカラトミー「人生ゲーム」の紙幣管理をデジタル化</li>
         <li>ブラウザのみで動作するため、サーバーサイドにユーザーデータは一切保存しません</li>
       </ul>
       <div className={styles.playerControl}>
