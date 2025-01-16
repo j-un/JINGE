@@ -1,17 +1,26 @@
 /* グローバルスタイル */
 :global {
     body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #ffffff;
+        color: #000000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
     }
 
     code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+            monospace;
     }
 }
 
@@ -24,17 +33,30 @@
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
+
+@media (prefers-color-scheme: dark) {
+    .title {
+        color: #ffffff;
+    }
+}
+
 .description {
     color: #666;
-    font-size: 0.875rem;
     margin: 1rem 0;
     padding-left: 1.5rem;
     list-style-type: disc;
 }
 
+@media (prefers-color-scheme: dark) {
+    .description {
+        color: #aaa;
+    }
+}
+
 .description li {
     margin-bottom: 0.5rem;
 }
+
 .playerControl {
     margin-bottom: 20px;
 }
@@ -42,6 +64,18 @@
 .playerInput {
     width: 50px;
     margin: 0 8px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .playerInput {
+        background-color: #2d2d2d;
+        border-color: #404040;
+        color: #ffffff;
+    }
 }
 
 .playerBoards {
