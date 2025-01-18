@@ -1,4 +1,3 @@
-/* グローバルスタイル */
 :global {
     body {
         margin: 0;
@@ -24,7 +23,6 @@
     }
 }
 
-/* コンポーネント固有のスタイル */
 .container {
     margin: 0 24px 24px 24px;
 }
@@ -39,7 +37,6 @@
         color: #ffffff;
     }
 }
-
 .description {
     color: #666;
     margin: 1rem 0;
