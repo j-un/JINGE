@@ -1,23 +1,24 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, test, expect } from 'vitest'
-import App from '../App'
+import { MainContent } from '../MainContent'
 
-describe('App', () => {
-  test('初期レンダリング時にタイトルと説明文が表示される', () => {
-    render(<App />)
+describe('MainContent', () => {
+  test('初期レンダリング時に説明文が表示される', () => {
+    render(<MainContent />)
 
-    expect(screen.getByText('JINGE - β Ver.')).toBeInTheDocument()
     expect(
       screen.getByText('タカラトミー「人生ゲーム」の紙幣管理をデジタル化')
     ).toBeInTheDocument()
     expect(
-      screen.getByText('ブラウザのみで動作するため、サーバーサイドにユーザーデータは一切保存しません')
+      screen.getByText(
+        'ブラウザのみで動作するため、サーバーサイドにユーザーデータは一切保存しません'
+      )
     ).toBeInTheDocument()
     expect(screen.getByLabelText('プレイヤー数 (1～6):')).toBeInTheDocument()
   })
 
   test('プレイヤー数を変更できる', () => {
-    render(<App />)
+    render(<MainContent />)
 
     const input = screen.getByLabelText('プレイヤー数 (1～6):')
     fireEvent.change(input, { target: { value: '3' } })
@@ -26,7 +27,7 @@ describe('App', () => {
   })
 
   test('リセットボタンでプレイヤー数を更新できる', () => {
-    render(<App />)
+    render(<MainContent />)
 
     const input = screen.getByLabelText('プレイヤー数 (1～6):')
     fireEvent.change(input, { target: { value: '3' } })
@@ -39,7 +40,7 @@ describe('App', () => {
   })
 
   test('プレイヤー数が1-6の範囲に制限される', () => {
-    render(<App />)
+    render(<MainContent />)
 
     const input = screen.getByLabelText('プレイヤー数 (1～6):')
 
@@ -56,7 +57,7 @@ describe('App', () => {
   })
 
   test('各プレイヤーボードが正しく表示される', () => {
-    render(<App />)
+    render(<MainContent />)
 
     const input = screen.getByLabelText('プレイヤー数 (1～6):')
     fireEvent.change(input, { target: { value: '2' } })
