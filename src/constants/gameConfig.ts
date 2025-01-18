@@ -18,7 +18,7 @@ export const CURRENCIES: Currency[] = [
   { name: '$20000', value: 20000, img: bill20000 },
   { name: '$50000', value: 50000, img: bill50000 },
   { name: '$100000', value: 100000, img: bill100000 },
-  { name: '$20000約束手形', value: -20000, img: billyakusoku },
+  { name: '$20000約束手形', value: 0, img: billyakusoku },
   { name: '生命保険証', value: 0, img: billseimei },
   { name: '株券', value: 0, img: billkabu },
   { name: '火災保険', value: 0, img: billkasai },
