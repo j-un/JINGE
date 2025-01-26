@@ -1,8 +1,8 @@
 const PrivacyPolicy = () => {
   return (
-    <div>
+    <div className="privacy-container">
       <h2>プライバシーポリシー</h2>
-      <div>
+      <div className="privacy-content">
         <section>
           <h3>1. データ収集について</h3>
           <ul>

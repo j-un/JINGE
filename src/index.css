@@ -1,68 +1,151 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import 'tailwindcss';
 
+@layer base {
+  h2 {
+    @apply text-2xl font-bold mb-8;
+  }
+
+  h3 {
+    @apply text-xl font-semibold mb-4;
+  }
+
+  section {
+    @apply space-y-8;
+  }
+
+  ul {
+    @apply list-disc pl-6 space-y-2;
+  }
+
+  a {
+    @apply text-blue-600 hover:underline;
+  }
+}
+
+/* Layout styles */
+.layout-container {
+  @apply min-h-screen flex flex-col;
+}
+
+.layout-header {
+  @apply bg-white py-4 px-8;
+}
+
+.header-link {
+  @apply no-underline text-inherit;
+}
+
+.header-title {
+  @apply text-2xl font-bold;
+}
+
+.layout-main {
+  @apply flex-grow px-8 pt-5 pb-8;
+}
+
+.layout-footer {
+  @apply text-gray-600 pt-2 py-8 mt-auto px-8 place-items-center;
+}
+
+.footer-links {
+  @apply block;
+}
+
+.footer-link {
+  @apply hover:underline;
+}
+
+.footer-copyright {
+  @apply block;
+}
+
+/* MainContent styles */
+.main-description {
+  @apply text-gray-600 mb-6 list-disc pl-6;
+}
+
+.player-control {
+  @apply text-gray-600 mb-6 flex items-center gap-4;
+}
+
+.player-count-input {
+  @apply w-20 px-2 py-1 border border-gray-300 rounded;
+}
+
+.reset-button {
+  @apply px-4 py-1 bg-gray-200 rounded hover:bg-gray-300;
+}
+
+.player-name-hint {
+  @apply text-gray-600 mb-6 text-sm;
+}
+
+.player-board-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-fit;
+}
+
+/* PlayerBoard styles */
+.player-board {
+  @apply bg-white p-6 rounded-lg drop-shadow-md;
+  @apply border border-gray-300;
+  @apply transition-all duration-200;
+  @apply hover:shadow-md hover:border-gray-400;
+}
+
+.player-name {
+  @apply text-xl mb-2;
+}
+
+.player-name-input {
+  @apply w-full border border-gray-300 px-2 py-1;
+}
+
+.player-name-display {
+  @apply cursor-pointer;
+}
+
+.player-total {
+  @apply mb-4 text-blue-900 font-bold;
+}
+
+.currency-row {
+  @apply mb-3;
+}
+
+.currency-info {
+  @apply flex items-center;
+}
+
+.currency-amount {
+  @apply flex items-center flex-1;
+}
+
+.currency-image {
+  @apply h-8;
+}
+
+.currency-count {
+  @apply w-12 text-center;
+}
+
+.currency-controls {
+  @apply flex gap-1;
+}
+
+.currency-button {
+  @apply w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-blue-100 hover:border-blue-500;
+}
+
+/* Privacy Policy styles */
+.privacy-container {
+  @apply max-w-3xl mx-auto px-4 py-8;
+}
+
+.privacy-content {
+  @apply space-y-8;
+}
+
+/* misc */
+img {
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
