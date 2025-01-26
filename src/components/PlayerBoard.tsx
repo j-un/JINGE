@@ -1,16 +1,11 @@
 import React, { useState } from 'react'
 import { Currency } from '../types'
-import styles from './PlayerBoard.module.css'
 
 interface PlayerBoardProps {
   playerId: number
   currencyCounts: number[]
   currencies: Currency[]
-  onUpdateCurrency: (
-    playerId: number,
-    currencyIndex: number,
-    delta: number
-  ) => void
+  onUpdateCurrency: (playerId: number, currencyIndex: number, delta: number) => void
 }
 
 export const PlayerBoard: React.FC<PlayerBoardProps> = ({
@@ -48,10 +43,9 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({
   }
 
   const total = calculatePlayerTotal(currencyCounts)
-
   return (
-    <div className={styles.playerBoard}>
-      <h2 className={styles.playerName}>
+    <div className="player-board">
+      <h2 className="player-name">
         {isEditing ? (
           <input
             type="text"
@@ -60,38 +54,42 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({
             onBlur={handleNameBlur}
             onKeyPress={handleKeyPress}
             autoFocus
-            className={styles.nameInput}
+            className="player-name-input"
           />
         ) : (
-          <span onClick={handleNameClick}>{playerName}</span>
+          <span className="player-name-display" onClick={handleNameClick}>
+            {playerName}
+          </span>
         )}
       </h2>
-      <p className={styles.totalAmount}>
+      <p className="player-total">
         合計所持金: ${total.toLocaleString()}
       </p>
       {currencies.map((currency, index) => (
-        <div key={currency.name} className={styles.currencyItem}>
-          <div className={styles.currencyContainer}>
-            <img
-              src={currency.img}
-              alt={currency.name}
-              className={styles.currencyImage}
-            />
-            <div className={styles.currencyCount}>
-              x {currencyCounts[index]}
+        <div key={currency.name} className="currency-row">
+          <div className="currency-info">
+            <div className="currency-amount">
+              <img
+                src={currency.img}
+                alt={currency.name}
+                className="currency-image"
+              />
+              <div className="currency-count">
+                x {currencyCounts[index]}
+              </div>
             </div>
-            <div className={styles.buttonContainer}>
+            <div className="currency-controls">
               <button
                 onClick={() => onUpdateCurrency(playerId, index, 1)}
                 aria-label={`${currency.name}を増やす`}
-                className={styles.currencyButton}
+                className="currency-button"
               >
                 +
               </button>
               <button
                 onClick={() => onUpdateCurrency(playerId, index, -1)}
                 aria-label={`${currency.name}を減らす`}
-                className={styles.currencyButton}
+                className="currency-button"
               >
                 -
               </button>

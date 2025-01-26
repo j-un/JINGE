@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { PlayerBoard } from './PlayerBoard'
 import { usePlayerManagement } from '../hooks/usePlayerManagement'
 import { CURRENCIES, GAME_CONFIG } from '../constants/gameConfig'
-import styles from './MainContent.module.css'
 
 export const MainContent: React.FC = () => {
   const [playerCountInput, setPlayerCountInput] = useState<number>(
@@ -20,13 +19,14 @@ export const MainContent: React.FC = () => {
 
   return (
     <>
-      <ul className={styles.description}>
+      <ul className="main-description">
         <li>タカラトミー「人生ゲーム」の紙幣管理をデジタル化</li>
         <li>
           ブラウザのみで動作するため、サーバーサイドにユーザーデータは一切保存しません
         </li>
       </ul>
-      <div className={styles.playerControl}>
+      
+      <div className="player-control">
         <label htmlFor="playerCountInput">プレイヤー数 (1～6): </label>
         <input
           id="playerCountInput"
@@ -35,13 +35,19 @@ export const MainContent: React.FC = () => {
           onChange={e => setPlayerCountInput(Number(e.target.value))}
           min={GAME_CONFIG.MIN_PLAYERS}
           max={GAME_CONFIG.MAX_PLAYERS}
-          className={styles.playerInput}
+          className="player-count-input"
         />
-        <button onClick={handleSetPlayers}>リセット</button>
+        <button 
+          onClick={handleSetPlayers}
+          className="reset-button"
+        >
+          リセット
+        </button>
       </div>
 
-      <p className={styles.description}>※プレイヤー名クリックで変更</p>
-      <div className={styles.playerBoards}>
+      <p className="player-name-hint">※プレイヤー名クリックで変更</p>
+      
+      <div className="player-board-grid">
         {players.map(player => (
           <PlayerBoard
             key={player.id}
@@ -55,5 +61,4 @@ export const MainContent: React.FC = () => {
     </>
   )
 }
-
 export default MainContent
