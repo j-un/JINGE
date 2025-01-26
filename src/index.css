@@ -136,6 +136,13 @@
   @apply w-8 h-8 border border-gray-300 rounded flex items-center justify-center hover:bg-blue-100 hover:border-blue-500;
 }
 
+@media (hover: none) {
+  .currency-button {
+    @apply touch-manipulation;
+    @apply active:bg-blue-300;
+  }
+}
+
 /* Privacy Policy styles */
 .privacy-container {
   @apply max-w-3xl mx-auto px-4 py-8;
