@@ -5,7 +5,11 @@ interface PlayerBoardProps {
   playerId: number
   currencyCounts: number[]
   currencies: Currency[]
-  onUpdateCurrency: (playerId: number, currencyIndex: number, delta: number) => void
+  onUpdateCurrency: (
+    playerId: number,
+    currencyIndex: number,
+    delta: number
+  ) => void
 }
 
 export const PlayerBoard: React.FC<PlayerBoardProps> = ({
@@ -62,9 +66,7 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({
           </span>
         )}
       </h2>
-      <p className="player-total">
-        合計所持金: ${total.toLocaleString()}
-      </p>
+      <p className="player-total">合計所持金: ${total.toLocaleString()}</p>
       {currencies.map((currency, index) => (
         <div key={currency.name} className="currency-row">
           <div className="currency-info">
@@ -74,9 +76,7 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({
                 alt={currency.name}
                 className="currency-image"
               />
-              <div className="currency-count">
-                x {currencyCounts[index]}
-              </div>
+              <div className="currency-count">x {currencyCounts[index]}</div>
             </div>
             <div className="currency-controls">
               <button

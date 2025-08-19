@@ -14,16 +14,18 @@ const Layout = ({ children }: LayoutProps) => {
         </Link>
       </header>
 
-      <main className="layout-main">
-        {children}
-      </main>
+      <main className="layout-main">{children}</main>
 
       <footer className="layout-footer">
         <small className="footer-links">
           関連リンク:{' '}
-          <Link to="/" className="footer-link">Top</Link>
+          <Link to="/" className="footer-link">
+            Top
+          </Link>
           {' | '}
-          <Link to="/privacy" className="footer-link">Privacy Policy</Link>
+          <Link to="/privacy" className="footer-link">
+            Privacy Policy
+          </Link>
           {' | '}
           <a
             href="https://github.com/j-un/JINGE"
