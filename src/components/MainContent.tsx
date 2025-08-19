@@ -25,7 +25,7 @@ export const MainContent: React.FC = () => {
           ブラウザのみで動作するため、サーバーサイドにユーザーデータは一切保存しません
         </li>
       </ul>
-      
+
       <div className="player-control">
         <label htmlFor="playerCountInput">プレイヤー数 (1～6): </label>
         <input
@@ -37,16 +37,13 @@ export const MainContent: React.FC = () => {
           max={GAME_CONFIG.MAX_PLAYERS}
           className="player-count-input"
         />
-        <button 
-          onClick={handleSetPlayers}
-          className="reset-button"
-        >
+        <button onClick={handleSetPlayers} className="reset-button">
           リセット
         </button>
       </div>
 
       <p className="player-name-hint">※プレイヤー名クリックで変更</p>
-      
+
       <div className="player-board-grid">
         {players.map(player => (
           <PlayerBoard
