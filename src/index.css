@@ -143,6 +143,72 @@
   }
 }
 
+/* Roulette button + Modal styles */
+.roulette-open-button {
+  @apply px-4 py-1 bg-red-500 text-white rounded hover:bg-red-600 font-semibold;
+}
+
+.modal-overlay {
+  @apply fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4;
+}
+
+.modal-panel {
+  @apply bg-white rounded-lg shadow-xl w-full max-w-md max-h-full overflow-auto;
+}
+
+.modal-header {
+  @apply flex items-center justify-between px-4 py-3 border-b border-gray-200;
+}
+
+.modal-title {
+  @apply text-lg font-bold m-0;
+}
+
+.modal-close-button {
+  @apply text-2xl leading-none w-8 h-8 flex items-center justify-center rounded hover:bg-gray-100;
+}
+
+.modal-body {
+  @apply p-4;
+}
+
+/* Roulette styles */
+.roulette-wrapper {
+  @apply flex flex-col items-center gap-4;
+}
+
+.roulette-stage {
+  @apply relative w-64 h-64;
+}
+
+.roulette-disc {
+  @apply w-full h-full drop-shadow-lg;
+  transform-origin: 50% 50%;
+}
+
+.roulette-pointer {
+  @apply absolute left-1/2 -translate-x-1/2 z-10;
+  top: -6px;
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 24px solid #d32f2f;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+}
+
+.roulette-controls {
+  @apply flex flex-col items-center gap-2;
+}
+
+.roulette-spin-button {
+  @apply px-6 py-2 bg-red-500 text-white rounded-full font-bold hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.roulette-result {
+  @apply text-lg font-bold min-h-[1.75rem] text-blue-900;
+}
+
 /* Privacy Policy styles */
 .privacy-container {
   @apply max-w-3xl mx-auto px-4 py-8;
