@@ -71,4 +71,37 @@ describe('MainContent', () => {
     const totalAmounts = screen.getAllByText('合計所持金: $0')
     expect(totalAmounts).toHaveLength(2)
   })
+
+  test('初期状態ではルーレットモーダルは表示されていない', () => {
+    render(<MainContent />)
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
+
+  test('「ルーレット」ボタンが表示される', () => {
+    render(<MainContent />)
+    expect(
+      screen.getByRole('button', { name: 'ルーレット' })
+    ).toBeInTheDocument()
+  })
+
+  test('「ルーレット」ボタン押下でモーダルが開く', () => {
+    render(<MainContent />)
+    fireEvent.click(screen.getByRole('button', { name: 'ルーレット' }))
+
+    const dialog = screen.getByRole('dialog')
+    expect(dialog).toBeInTheDocument()
+    // モーダル内の Roulette コンポーネントの操作ボタンが現れる
+    expect(
+      screen.getByRole('button', { name: 'ルーレットを回す' })
+    ).toBeInTheDocument()
+  })
+
+  test('モーダルの閉じるボタンでモーダルが閉じる', () => {
+    render(<MainContent />)
+    fireEvent.click(screen.getByRole('button', { name: 'ルーレット' }))
+    expect(screen.getByRole('dialog')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByLabelText('閉じる'))
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  })
 })
