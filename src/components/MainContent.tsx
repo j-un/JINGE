@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { PlayerBoard } from './PlayerBoard'
+import { Modal } from './Modal'
+import { Roulette } from './Roulette'
 import { usePlayerManagement } from '../hooks/usePlayerManagement'
 import { CURRENCIES, GAME_CONFIG } from '../constants/gameConfig'
 
@@ -7,6 +9,7 @@ export const MainContent: React.FC = () => {
   const [playerCountInput, setPlayerCountInput] = useState<number>(
     GAME_CONFIG.INITIAL_PLAYER_COUNT
   )
+  const [isRouletteOpen, setIsRouletteOpen] = useState(false)
   const { players, updatePlayerCount, updateCurrencyCount } =
     usePlayerManagement({
       initialPlayerCount: GAME_CONFIG.INITIAL_PLAYER_COUNT,
@@ -40,6 +43,13 @@ export const MainContent: React.FC = () => {
         <button onClick={handleSetPlayers} className="reset-button">
           リセット
         </button>
+        <button
+          type="button"
+          onClick={() => setIsRouletteOpen(true)}
+          className="roulette-open-button"
+        >
+          ルーレット
+        </button>
       </div>
 
       <p className="player-name-hint">※プレイヤー名クリックで変更</p>
@@ -55,6 +65,14 @@ export const MainContent: React.FC = () => {
           />
         ))}
       </div>
+
+      <Modal
+        isOpen={isRouletteOpen}
+        onClose={() => setIsRouletteOpen(false)}
+        title="ルーレット"
+      >
+        <Roulette />
+      </Modal>
     </>
   )
 }
