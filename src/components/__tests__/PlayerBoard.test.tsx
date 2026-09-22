@@ -1,4 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, test, expect, beforeEach, vi } from 'vitest'
 import { PlayerBoard } from '../PlayerBoard'
 import { Currency } from '../../types'
@@ -43,6 +44,30 @@ describe('PlayerBoard', () => {
     const input = screen.getByRole('textbox')
     expect(input).toBeInTheDocument()
     expect(input).toHaveValue('プレイヤー 1')
+  })
+
+  test('プレイヤー名をクリックすると全文が選択され、最初の入力で置き換わる', async () => {
+    const user = userEvent.setup()
+    render(<PlayerBoard {...defaultProps} />)
+
+    await user.click(screen.getByText('プレイヤー 1'))
+
+    const input = screen.getByRole('textbox')
+    if (
+      !(input instanceof HTMLInputElement) &&
+      !(input instanceof HTMLTextAreaElement)
+    ) {
+      throw new Error('expected a text control')
+    }
+
+    expect(input.selectionStart).toBe(0)
+    expect(input.selectionEnd).toBe(input.value.length)
+
+    await user.keyboard('X')
+    expect(input).toHaveValue('X')
+
+    await user.keyboard('Y')
+    expect(input).toHaveValue('XY')
   })
 
   test('プレイヤー名を編集して保存できる', () => {
