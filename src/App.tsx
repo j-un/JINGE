@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
-import MainContent from './components/MainContent'
+import { MainContent } from './components/MainContent'
 import PrivacyPolicy from './pages/Privacy'
 
 const App: React.FC = () => {

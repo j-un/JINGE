@@ -1,4 +1,4 @@
-export interface RotationParams {
+interface RotationParams {
   baseRotation: number
   winnerIndex: number
   jitter: number
@@ -28,10 +28,6 @@ export const computeNextRotation = ({
   return baseRotation + extraTurns * 360 + delta
 }
 
-/**
- * 指定した回転角が適用されたときに、ポインター(0度)位置に来るセグメントの
- * インデックスを逆算する純関数。テストでの整合性検証に使う。
- */
 export const resolveWinnerIndex = (
   rotation: number,
   segmentCount: number
