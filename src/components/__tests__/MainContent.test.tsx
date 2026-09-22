@@ -75,9 +75,8 @@ describe('MainContent', () => {
   test('初期レンダリング時にデフォルト人数分の合計所持金: $0 が表示される', () => {
     render(<MainContent />)
 
-    const playerBoards = screen.getAllByText(/プレイヤー \d/)
     const totals = screen.getAllByText('合計所持金: $0')
-    expect(totals).toHaveLength(playerBoards.length)
+    expect(totals).toHaveLength(1)
   })
 
   test('合計を隠すをクリックすると全ての合計が非表示になりボタンが合計を表示になる', () => {
@@ -85,9 +84,8 @@ describe('MainContent', () => {
 
     fireEvent.click(screen.getByRole('button', { name: '合計を隠す' }))
 
-    const playerBoards = screen.getAllByText(/プレイヤー \d/)
     const masked = screen.getAllByText('合計所持金: $---')
-    expect(masked).toHaveLength(playerBoards.length)
+    expect(masked).toHaveLength(1)
     expect(screen.queryByText('合計所持金: $0')).not.toBeInTheDocument()
 
     const showButton = screen.getByRole('button', { name: '合計を表示' })
@@ -100,9 +98,8 @@ describe('MainContent', () => {
     fireEvent.click(screen.getByRole('button', { name: '合計を隠す' }))
     fireEvent.click(screen.getByRole('button', { name: '合計を表示' }))
 
-    const playerBoards = screen.getAllByText(/プレイヤー \d/)
     const totals = screen.getAllByText('合計所持金: $0')
-    expect(totals).toHaveLength(playerBoards.length)
+    expect(totals).toHaveLength(1)
     expect(screen.queryByText('合計所持金: $---')).not.toBeInTheDocument()
   })
 
@@ -112,9 +109,8 @@ describe('MainContent', () => {
     fireEvent.click(screen.getByRole('button', { name: '合計を隠す' }))
     fireEvent.click(screen.getByRole('button', { name: 'リセット' }))
 
-    const playerBoards = screen.getAllByText(/プレイヤー \d/)
     const totals = screen.getAllByText('合計所持金: $0')
-    expect(totals).toHaveLength(playerBoards.length)
+    expect(totals).toHaveLength(1)
   })
 
   test('マスク中も紙幣の+ボタンが残る', () => {
@@ -145,7 +141,6 @@ describe('MainContent', () => {
 
     const dialog = screen.getByRole('dialog')
     expect(dialog).toBeInTheDocument()
-    // モーダル内の Roulette コンポーネントの操作ボタンが現れる
     expect(
       screen.getByRole('button', { name: 'ルーレットを回す' })
     ).toBeInTheDocument()

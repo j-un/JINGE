@@ -5,6 +5,18 @@ const SEGMENT_COUNT = 10
 const SEGMENT_ANGLE = 360 / SEGMENT_COUNT
 
 describe('computeNextRotation', () => {
+  test('winner 0、jitter 0、extraTurns 5、base 0 の停止角は 2142', () => {
+    expect(
+      computeNextRotation({
+        baseRotation: 0,
+        winnerIndex: 0,
+        jitter: 0,
+        extraTurns: 5,
+        segmentAngle: SEGMENT_ANGLE,
+      })
+    ).toBe(2142)
+  })
+
   test('初回スピン: winnerのセグメント中央がポインター(0度)方向に来る', () => {
     for (let winner = 0; winner < SEGMENT_COUNT; winner++) {
       const rotation = computeNextRotation({
