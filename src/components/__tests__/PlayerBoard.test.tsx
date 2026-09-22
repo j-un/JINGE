@@ -39,7 +39,7 @@ describe('PlayerBoard', () => {
   test('areTotalsVisible が false のとき合計は非表示で紙幣操作は残る', () => {
     render(<PlayerBoard {...defaultProps} areTotalsVisible={false} />)
 
-    expect(screen.getByText('合計所持金: 非表示')).toBeInTheDocument()
+    expect(screen.getByText('合計所持金: $---')).toBeInTheDocument()
     expect(screen.queryByText('合計所持金: $35,000')).not.toBeInTheDocument()
     expect(screen.queryByText(/\$35,000/)).not.toBeInTheDocument()
     expect(screen.getByText('x 2')).toBeInTheDocument()

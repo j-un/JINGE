@@ -86,7 +86,7 @@ describe('MainContent', () => {
     fireEvent.click(screen.getByRole('button', { name: '合計を隠す' }))
 
     const playerBoards = screen.getAllByText(/プレイヤー \d/)
-    const masked = screen.getAllByText('合計所持金: 非表示')
+    const masked = screen.getAllByText('合計所持金: $---')
     expect(masked).toHaveLength(playerBoards.length)
     expect(screen.queryByText('合計所持金: $0')).not.toBeInTheDocument()
 
@@ -103,7 +103,7 @@ describe('MainContent', () => {
     const playerBoards = screen.getAllByText(/プレイヤー \d/)
     const totals = screen.getAllByText('合計所持金: $0')
     expect(totals).toHaveLength(playerBoards.length)
-    expect(screen.queryByText('合計所持金: 非表示')).not.toBeInTheDocument()
+    expect(screen.queryByText('合計所持金: $---')).not.toBeInTheDocument()
   })
 
   test('マスク中にリセットすると合計が合計所持金: $0 に戻る', () => {
