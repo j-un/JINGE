@@ -82,18 +82,6 @@ describe('PlayerBoard', () => {
     expect(screen.getByText('テストプレイヤー')).toBeInTheDocument()
   })
 
-  //   test('Enterキーでプレイヤー名の編集を完了できる', () => {
-  //     render(<PlayerBoard {...defaultProps} />);
-
-  //     fireEvent.click(screen.getByText('プレイヤー 1'));
-  //     const input = screen.getByRole('textbox');
-
-  //     fireEvent.change(input, { target: { value: 'テストプレイヤー' } });
-  //     fireEvent.keyPress(input, { key: 'Enter', code: 'Enter' });
-
-  //     expect(screen.getByText('テストプレイヤー')).toBeInTheDocument();
-  //   });
-
   test('紙幣の増減ボタンが正しく動作する', () => {
     render(<PlayerBoard {...defaultProps} />)
 
