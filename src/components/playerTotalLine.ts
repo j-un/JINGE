@@ -5,7 +5,7 @@ export function formatPlayerTotalLine(
   if (areTotalsVisible) {
     return `合計所持金: $${total.toLocaleString()}`
   }
-  return '合計所持金: 非表示'
+  return '合計所持金: $---'
 }
 
 export function totalsVisibilityButtonLabel(

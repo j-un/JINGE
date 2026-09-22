@@ -13,12 +13,12 @@ describe('formatPlayerTotalLine', () => {
     expect(formatPlayerTotalLine(0, true)).toBe('合計所持金: $0')
   })
 
-  test('非表示の35000は 合計所持金: 非表示 になる', () => {
-    expect(formatPlayerTotalLine(35000, false)).toBe('合計所持金: 非表示')
+  test('マスクした35000は 合計所持金: $--- になる', () => {
+    expect(formatPlayerTotalLine(35000, false)).toBe('合計所持金: $---')
   })
 
-  test('非表示の0は 合計所持金: 非表示 になる', () => {
-    expect(formatPlayerTotalLine(0, false)).toBe('合計所持金: 非表示')
+  test('マスクした0は 合計所持金: $--- になる', () => {
+    expect(formatPlayerTotalLine(0, false)).toBe('合計所持金: $---')
   })
 })
 
