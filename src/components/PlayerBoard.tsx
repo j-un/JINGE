@@ -12,30 +12,42 @@ interface PlayerBoardProps {
   ) => void
 }
 
+type NameEdit =
+  | { status: 'display'; name: string }
+  | { status: 'editing'; name: string }
+
+const focusAndSelectNameInput: React.RefCallback<HTMLInputElement> = input => {
+  if (input === null) return
+  input.focus()
+  input.setSelectionRange(0, input.value.length)
+}
+
 export const PlayerBoard: React.FC<PlayerBoardProps> = ({
   playerId,
   currencyCounts,
   currencies,
   onUpdateCurrency,
 }) => {
-  const [isEditing, setIsEditing] = useState(false)
-  const [playerName, setPlayerName] = useState(`プレイヤー ${playerId}`)
+  const [nameEdit, setNameEdit] = useState<NameEdit>({
+    status: 'display',
+    name: `プレイヤー ${playerId}`,
+  })
 
   const handleNameClick = () => {
-    setIsEditing(true)
+    setNameEdit({ status: 'editing', name: nameEdit.name })
   }
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPlayerName(e.target.value)
+    setNameEdit({ status: 'editing', name: e.target.value })
   }
 
   const handleNameBlur = () => {
-    setIsEditing(false)
+    setNameEdit({ status: 'display', name: nameEdit.name })
   }
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      setIsEditing(false)
+      setNameEdit({ status: 'display', name: nameEdit.name })
     }
   }
 
@@ -50,19 +62,19 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({
   return (
     <div className="player-board">
       <h2 className="player-name">
-        {isEditing ? (
+        {nameEdit.status === 'editing' ? (
           <input
             type="text"
-            value={playerName}
+            value={nameEdit.name}
             onChange={handleNameChange}
             onBlur={handleNameBlur}
             onKeyPress={handleKeyPress}
-            autoFocus
+            ref={focusAndSelectNameInput}
             className="player-name-input"
           />
         ) : (
           <span className="player-name-display" onClick={handleNameClick}>
-            {playerName}
+            {nameEdit.name}
           </span>
         )}
       </h2>
