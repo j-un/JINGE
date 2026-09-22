@@ -36,6 +36,22 @@ describe('PlayerBoard', () => {
     expect(screen.getByText('合計所持金: $35,000')).toBeInTheDocument()
   })
 
+  test('areTotalsVisible が false のとき合計は非表示で紙幣操作は残る', () => {
+    render(<PlayerBoard {...defaultProps} areTotalsVisible={false} />)
+
+    expect(screen.getByText('合計所持金: 非表示')).toBeInTheDocument()
+    expect(screen.queryByText('合計所持金: $35,000')).not.toBeInTheDocument()
+    expect(screen.queryByText(/\$35,000/)).not.toBeInTheDocument()
+    expect(screen.getByText('x 2')).toBeInTheDocument()
+    expect(screen.getByText('x 3')).toBeInTheDocument()
+
+    const plusButtons = screen.getAllByText('+')
+    fireEvent.click(plusButtons[0])
+    fireEvent.click(plusButtons[1])
+    expect(defaultProps.onUpdateCurrency).toHaveBeenCalledWith(1, 0, 1)
+    expect(defaultProps.onUpdateCurrency).toHaveBeenCalledWith(1, 1, 1)
+  })
+
   test('プレイヤー名をクリックすると編集モードになる', () => {
     render(<PlayerBoard {...defaultProps} />)
 

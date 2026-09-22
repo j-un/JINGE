@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Currency } from '../types'
+import { formatPlayerTotalLine } from './playerTotalLine'
 
 interface PlayerBoardProps {
   playerId: number
@@ -10,6 +11,7 @@ interface PlayerBoardProps {
     currencyIndex: number,
     delta: number
   ) => void
+  areTotalsVisible?: boolean
 }
 
 type NameEdit =
@@ -27,6 +29,7 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({
   currencyCounts,
   currencies,
   onUpdateCurrency,
+  areTotalsVisible = true,
 }) => {
   const [nameEdit, setNameEdit] = useState<NameEdit>({
     status: 'display',
@@ -78,7 +81,9 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({
           </span>
         )}
       </h2>
-      <p className="player-total">合計所持金: ${total.toLocaleString()}</p>
+      <p className="player-total">
+        {formatPlayerTotalLine(total, areTotalsVisible)}
+      </p>
       {currencies.map((currency, index) => (
         <div key={currency.name} className="currency-row">
           <div className="currency-info">

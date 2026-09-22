@@ -65,7 +65,7 @@
 }
 
 .player-control {
-  @apply text-gray-600 mb-6 flex items-center gap-4;
+  @apply text-gray-600 mb-6 flex flex-wrap items-center gap-4;
 }
 
 .player-count-input {
@@ -74,6 +74,14 @@
 
 .reset-button {
   @apply px-4 py-1 bg-gray-200 rounded hover:bg-gray-300;
+}
+
+.totals-toggle-button {
+  @apply px-4 py-1 bg-gray-200 rounded hover:bg-gray-300;
+}
+
+.totals-toggle-button[aria-pressed='true'] {
+  @apply bg-blue-900 text-white hover:bg-blue-800;
 }
 
 .player-name-hint {

@@ -4,12 +4,14 @@ import { Modal } from './Modal'
 import { Roulette } from './Roulette'
 import { usePlayerManagement } from '../hooks/usePlayerManagement'
 import { CURRENCIES, GAME_CONFIG } from '../constants/gameConfig'
+import { totalsVisibilityButtonLabel } from './playerTotalLine'
 
 export const MainContent: React.FC = () => {
   const [playerCountInput, setPlayerCountInput] = useState<number>(
     GAME_CONFIG.INITIAL_PLAYER_COUNT
   )
   const [isRouletteOpen, setIsRouletteOpen] = useState(false)
+  const [areTotalsVisible, setAreTotalsVisible] = useState(true)
   const { players, updatePlayerCount, updateCurrencyCount } =
     usePlayerManagement({
       initialPlayerCount: GAME_CONFIG.INITIAL_PLAYER_COUNT,
@@ -18,6 +20,7 @@ export const MainContent: React.FC = () => {
 
   const handleSetPlayers = () => {
     updatePlayerCount(playerCountInput)
+    setAreTotalsVisible(true)
   }
 
   return (
@@ -50,6 +53,14 @@ export const MainContent: React.FC = () => {
         >
           ルーレット
         </button>
+        <button
+          type="button"
+          className="totals-toggle-button"
+          aria-pressed={!areTotalsVisible}
+          onClick={() => setAreTotalsVisible(visible => !visible)}
+        >
+          {totalsVisibilityButtonLabel(areTotalsVisible)}
+        </button>
       </div>
 
       <p className="player-name-hint">※プレイヤー名クリックで変更</p>
@@ -62,6 +73,7 @@ export const MainContent: React.FC = () => {
             currencyCounts={player.currencyCounts}
             currencies={CURRENCIES}
             onUpdateCurrency={updateCurrencyCount}
+            areTotalsVisible={areTotalsVisible}
           />
         ))}
       </div>
