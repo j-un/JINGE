@@ -72,6 +72,61 @@ describe('MainContent', () => {
     expect(totalAmounts).toHaveLength(2)
   })
 
+  test('初期レンダリング時にデフォルト人数分の合計所持金: $0 が表示される', () => {
+    render(<MainContent />)
+
+    const playerBoards = screen.getAllByText(/プレイヤー \d/)
+    const totals = screen.getAllByText('合計所持金: $0')
+    expect(totals).toHaveLength(playerBoards.length)
+  })
+
+  test('合計を隠すをクリックすると全ての合計が非表示になりボタンが合計を表示になる', () => {
+    render(<MainContent />)
+
+    fireEvent.click(screen.getByRole('button', { name: '合計を隠す' }))
+
+    const playerBoards = screen.getAllByText(/プレイヤー \d/)
+    const masked = screen.getAllByText('合計所持金: 非表示')
+    expect(masked).toHaveLength(playerBoards.length)
+    expect(screen.queryByText('合計所持金: $0')).not.toBeInTheDocument()
+
+    const showButton = screen.getByRole('button', { name: '合計を表示' })
+    expect(showButton).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  test('合計を表示をクリックすると全ての合計が合計所持金: $0 に戻る', () => {
+    render(<MainContent />)
+
+    fireEvent.click(screen.getByRole('button', { name: '合計を隠す' }))
+    fireEvent.click(screen.getByRole('button', { name: '合計を表示' }))
+
+    const playerBoards = screen.getAllByText(/プレイヤー \d/)
+    const totals = screen.getAllByText('合計所持金: $0')
+    expect(totals).toHaveLength(playerBoards.length)
+    expect(screen.queryByText('合計所持金: 非表示')).not.toBeInTheDocument()
+  })
+
+  test('マスク中にリセットすると合計が合計所持金: $0 に戻る', () => {
+    render(<MainContent />)
+
+    fireEvent.click(screen.getByRole('button', { name: '合計を隠す' }))
+    fireEvent.click(screen.getByRole('button', { name: 'リセット' }))
+
+    const playerBoards = screen.getAllByText(/プレイヤー \d/)
+    const totals = screen.getAllByText('合計所持金: $0')
+    expect(totals).toHaveLength(playerBoards.length)
+  })
+
+  test('マスク中も紙幣の+ボタンが残る', () => {
+    render(<MainContent />)
+
+    fireEvent.click(screen.getByRole('button', { name: '合計を隠す' }))
+
+    expect(
+      screen.getByRole('button', { name: '$1000を増やす' })
+    ).toBeInTheDocument()
+  })
+
   test('初期状態ではルーレットモーダルは表示されていない', () => {
     render(<MainContent />)
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
