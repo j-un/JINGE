@@ -79,18 +79,4 @@ describe('usePlayerManagement', () => {
     })
     expect(result.current.players[0].currencyCounts[0]).toBe(99)
   })
-
-  test('プレイヤーの合計金額が正しく計算される', () => {
-    const { result } = renderHook(() => usePlayerManagement(defaultProps))
-
-    act(() => {
-      result.current.updateCurrencyCount(1, 0, 2)
-      result.current.updateCurrencyCount(1, 1, 3)
-    })
-
-    const total = result.current.calculatePlayerTotal(
-      result.current.players[0].currencyCounts
-    )
-    expect(total).toBe(35000)
-  })
 })

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Currency } from '../types'
+import { playerTotal } from '../players'
 import { formatPlayerTotalLine } from './playerTotalLine'
 
 interface PlayerBoardProps {
@@ -54,14 +55,7 @@ export const PlayerBoard: React.FC<PlayerBoardProps> = ({
     }
   }
 
-  const calculatePlayerTotal = (counts: number[]): number => {
-    return counts.reduce(
-      (sum, count, i) => sum + count * currencies[i].value,
-      0
-    )
-  }
-
-  const total = calculatePlayerTotal(currencyCounts)
+  const total = playerTotal(currencyCounts, currencies)
   return (
     <div className="player-board">
       <h2 className="player-name">
