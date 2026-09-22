@@ -35,18 +35,7 @@ describe('Modal', () => {
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 
-  test('オーバーレイクリックで onClose が呼ばれる', () => {
-    const onClose = vi.fn()
-    render(
-      <Modal isOpen={true} onClose={onClose} title="T">
-        <p>body</p>
-      </Modal>
-    )
-    fireEvent.click(screen.getByRole('dialog'))
-    expect(onClose).toHaveBeenCalledTimes(1)
-  })
-
-  test('パネル内部のクリックでは onClose は呼ばれない (伝播停止)', () => {
+  test('パネル内部のクリックでは閉じず、オーバーレイで onClose が呼ばれる', () => {
     const onClose = vi.fn()
     render(
       <Modal isOpen={true} onClose={onClose} title="T">
@@ -55,20 +44,11 @@ describe('Modal', () => {
     )
     fireEvent.click(screen.getByText('本文'))
     expect(onClose).not.toHaveBeenCalled()
-  })
-
-  test('Escape キーで onClose が呼ばれる', () => {
-    const onClose = vi.fn()
-    render(
-      <Modal isOpen={true} onClose={onClose} title="T">
-        <p>body</p>
-      </Modal>
-    )
-    fireEvent.keyDown(window, { key: 'Escape' })
+    fireEvent.click(screen.getByRole('dialog'))
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 
-  test('Escape 以外のキーでは onClose は呼ばれない', () => {
+  test('Enter では閉じず、Escape で onClose が呼ばれる', () => {
     const onClose = vi.fn()
     render(
       <Modal isOpen={true} onClose={onClose} title="T">
@@ -77,5 +57,7 @@ describe('Modal', () => {
     )
     fireEvent.keyDown(window, { key: 'Enter' })
     expect(onClose).not.toHaveBeenCalled()
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(onClose).toHaveBeenCalledTimes(1)
   })
 })

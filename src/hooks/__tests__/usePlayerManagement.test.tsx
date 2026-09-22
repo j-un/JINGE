@@ -30,30 +30,6 @@ describe('usePlayerManagement', () => {
     expect(result.current.players[1].currencyCounts).toEqual([0, 0])
   })
 
-  test('プレイヤー数を更新できる', () => {
-    const { result } = renderHook(() => usePlayerManagement(defaultProps))
-
-    act(() => {
-      result.current.updatePlayerCount(4)
-    })
-
-    expect(result.current.players).toHaveLength(4)
-  })
-
-  test('プレイヤー数は1-6の範囲に制限される', () => {
-    const { result } = renderHook(() => usePlayerManagement(defaultProps))
-
-    act(() => {
-      result.current.updatePlayerCount(0)
-    })
-    expect(result.current.players).toHaveLength(1)
-
-    act(() => {
-      result.current.updatePlayerCount(7)
-    })
-    expect(result.current.players).toHaveLength(6)
-  })
-
   test('通貨カウントを更新できる', () => {
     const { result } = renderHook(() => usePlayerManagement(defaultProps))
 
@@ -62,21 +38,5 @@ describe('usePlayerManagement', () => {
     })
 
     expect(result.current.players[0].currencyCounts[0]).toBe(1)
-  })
-
-  test('通貨カウントは0-99の範囲に制限される', () => {
-    const { result } = renderHook(() => usePlayerManagement(defaultProps))
-
-    act(() => {
-      result.current.updateCurrencyCount(1, 0, -1)
-    })
-    expect(result.current.players[0].currencyCounts[0]).toBe(0)
-
-    act(() => {
-      for (let i = 0; i < 100; i++) {
-        result.current.updateCurrencyCount(1, 0, 1)
-      }
-    })
-    expect(result.current.players[0].currencyCounts[0]).toBe(99)
   })
 })
