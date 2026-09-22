@@ -142,5 +142,3 @@ export const Roulette: React.FC = () => {
     </div>
   )
 }
-
-export default Roulette
