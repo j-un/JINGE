@@ -20,3 +20,11 @@ updates:
           - "*"
         exclude-patterns:
           - "typescript"
+    ignore:
+      # @typescript-eslint/* 8.x still peers typescript ">=4.8.4 <6.1.0".
+      # Dependabot otherwise tries 7.x, fails peer resolution
+      # (dependency_file_not_resolvable), and the updater check on main goes
+      # red. Remove once typescript-eslint supports TypeScript 7.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+        versions: [">=7.0.0"]
